@@ -121,7 +121,6 @@ class App extends React.Component {
     return(
 
       <div className="wrapper" id="wrapper">
-
         <div className="container">
           <div className="main">
             <div className="row">
@@ -142,7 +141,6 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        
       </div>
 
     );
