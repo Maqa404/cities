@@ -130,7 +130,7 @@ class App extends React.Component {
               <div className="col-sm-7 form">
                 <Form weatherMethod={this.gettingWeather} />
                 <Weather 
-                  temp={this.state.temp}
+                  temp={Math.round(this.state.temp)}
                   city={this.state.city}
                   country={this.state.country}
                   weather={this.state.weather}
