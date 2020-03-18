@@ -50,55 +50,103 @@ class App extends React.Component {
         error: undefined
       });
 
-      if(this.state.weather === "Clouds") {
-        let wrapper = document.getElementById("wrapper");
-        if(wrapper)
-        {
-          wrapper.style.backgroundImage='url(' + require('./gif/cloudy-weather.gif') + ')';
-          wrapper.style.backgroundSize="cover";
-          wrapper.style.backgroundRepeat="no-repeat";
-        }        
-      } else if(this.state.weather === "Rain") {
-          let wrapper = document.getElementById("wrapper");
-          if(wrapper)
-          {
+      // if(this.state.weather === "Clouds") {
+      //   let wrapper = document.getElementById("wrapper");
+      //   if(wrapper)
+      //   {
+      //     wrapper.style.backgroundImage='url(' + require('./gif/cloudy-weather.gif') + ')';
+      //     wrapper.style.backgroundSize="cover";
+      //     wrapper.style.backgroundRepeat="no-repeat";
+      //   }        
+      // } else if(this.state.weather === "Rain") {
+      //     let wrapper = document.getElementById("wrapper");
+      //     if(wrapper)
+      //     {
+      //       wrapper.style.backgroundImage='url(' + require('./gif/rainy-weather.gif') + ')';
+      //       wrapper.style.backgroundSize="cover";
+      //       wrapper.style.backgroundRepeat="no-repeat";
+      //     }
+      // } else if(this.state.weather === "Thunderstorm") {
+      //     let wrapper = document.getElementById("wrapper");
+      //     if(wrapper)
+      //     {
+      //       wrapper.style.backgroundImage='url(' + require('./gif/thunderstorm-weather.gif') + ')';
+      //       wrapper.style.backgroundSize="cover";
+      //       wrapper.style.backgroundRepeat="no-repeat";
+      //     }
+      // } else if(this.state.weather === "Drizzle") {
+      //     let wrapper = document.getElementById("wrapper");
+      //     if(wrapper)
+      //     {
+      //       wrapper.style.backgroundImage='url(' + require('./gif/drizzle-weather.gif') + ')';
+      //       wrapper.style.backgroundSize="cover";
+      //       wrapper.style.backgroundRepeat="no-repeat";
+      //     }
+      // } else if(this.state.weather === "Snow") {
+      //     let wrapper = document.getElementById("wrapper");
+      //     if(wrapper)
+      //     {
+      //       wrapper.style.backgroundImage='url(' + require('./gif/snow-weather.gif') + ')';
+      //       wrapper.style.backgroundSize="cover";
+      //       wrapper.style.backgroundRepeat="no-repeat";
+      //     }
+      // } else if(this.state.weather === "Clear") {
+      //     let wrapper = document.getElementById("wrapper");
+      //     if(wrapper)
+      //     {
+      //       wrapper.style.backgroundImage='url(' + require('./gif/clear-weather.gif') + ')';
+      //       wrapper.style.backgroundSize="cover";
+      //       wrapper.style.backgroundRepeat="no-repeat";
+      //     }
+      // }
+
+      let wrapper = document.getElementById("wrapper");
+      switch(this.state.weather){
+
+        case "Clouds":
+          if(wrapper){
+            wrapper.style.backgroundImage='url(' + require('./gif/cloudy-weather.gif') + ')';
+            wrapper.style.backgroundSize="cover";
+            wrapper.style.backgroundRepeat="no-repeat";
+          }
+          break;
+        case "Rain":
+          if(wrapper){
             wrapper.style.backgroundImage='url(' + require('./gif/rainy-weather.gif') + ')';
             wrapper.style.backgroundSize="cover";
             wrapper.style.backgroundRepeat="no-repeat";
           }
-      } else if(this.state.weather === "Thunderstorm") {
-          let wrapper = document.getElementById("wrapper");
-          if(wrapper)
-          {
+          break;
+        case "Thunderstorm":
+          if(wrapper){
             wrapper.style.backgroundImage='url(' + require('./gif/thunderstorm-weather.gif') + ')';
             wrapper.style.backgroundSize="cover";
             wrapper.style.backgroundRepeat="no-repeat";
           }
-      } else if(this.state.weather === "Drizzle") {
-          let wrapper = document.getElementById("wrapper");
-          if(wrapper)
-          {
+          break;
+        case "Drizzle":
+          if(wrapper){
             wrapper.style.backgroundImage='url(' + require('./gif/drizzle-weather.gif') + ')';
             wrapper.style.backgroundSize="cover";
             wrapper.style.backgroundRepeat="no-repeat";
           }
-      } else if(this.state.weather === "Snow") {
-          let wrapper = document.getElementById("wrapper");
-          if(wrapper)
-          {
+          break;
+        case "Snow":
+          if(wrapper){
             wrapper.style.backgroundImage='url(' + require('./gif/snow-weather.gif') + ')';
             wrapper.style.backgroundSize="cover";
             wrapper.style.backgroundRepeat="no-repeat";
           }
-      } else if(this.state.weather === "Clear") {
-          let wrapper = document.getElementById("wrapper");
-          if(wrapper)
-          {
+          break;
+        case "Clear":
+          if(wrapper){
             wrapper.style.backgroundImage='url(' + require('./gif/clear-weather.gif') + ')';
             wrapper.style.backgroundSize="cover";
             wrapper.style.backgroundRepeat="no-repeat";
           }
-      } 
+          break;
+
+      }
 
     }
     else {
