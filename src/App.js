@@ -1,4 +1,7 @@
 import React from "react";
+import ReactSnackBar from "react-js-snackbar";
+import Snackbar from "@material-ui/core/Snackbar";
+import { makeStyles } from '@material-ui/core/styles';
 import Info from "./components/info";
 import Form from "./components/form";
 import Weather from "./components/Weather";
@@ -14,7 +17,7 @@ class App extends React.Component {
     country: undefined,
     weather: undefined,
     icon: undefined,
-    error: undefined
+    error: undefined,
 
   }
 
@@ -26,7 +29,7 @@ class App extends React.Component {
     if(city){
       const api_url = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
       const data = await api_url.json();
-      console.log(data);
+      // console.log(data);
 
       if(data.cod === "404")  {
         this.setState({
@@ -35,7 +38,7 @@ class App extends React.Component {
           country: '',
           weather: '',
           icon: '',
-          error: "Enter correct name of the city..."
+          error: 'Enter correct name of the city...'
         });
         return;
       }
@@ -49,56 +52,6 @@ class App extends React.Component {
         icon: data.weather["0"].icon,
         error: undefined
       });
-
-      // if(this.state.weather === "Clouds") {
-      //   let wrapper = document.getElementById("wrapper");
-      //   if(wrapper)
-      //   {
-      //     wrapper.style.backgroundImage='url(' + require('./gif/cloudy-weather.gif') + ')';
-      //     wrapper.style.backgroundSize="cover";
-      //     wrapper.style.backgroundRepeat="no-repeat";
-      //   }        
-      // } else if(this.state.weather === "Rain") {
-      //     let wrapper = document.getElementById("wrapper");
-      //     if(wrapper)
-      //     {
-      //       wrapper.style.backgroundImage='url(' + require('./gif/rainy-weather.gif') + ')';
-      //       wrapper.style.backgroundSize="cover";
-      //       wrapper.style.backgroundRepeat="no-repeat";
-      //     }
-      // } else if(this.state.weather === "Thunderstorm") {
-      //     let wrapper = document.getElementById("wrapper");
-      //     if(wrapper)
-      //     {
-      //       wrapper.style.backgroundImage='url(' + require('./gif/thunderstorm-weather.gif') + ')';
-      //       wrapper.style.backgroundSize="cover";
-      //       wrapper.style.backgroundRepeat="no-repeat";
-      //     }
-      // } else if(this.state.weather === "Drizzle") {
-      //     let wrapper = document.getElementById("wrapper");
-      //     if(wrapper)
-      //     {
-      //       wrapper.style.backgroundImage='url(' + require('./gif/drizzle-weather.gif') + ')';
-      //       wrapper.style.backgroundSize="cover";
-      //       wrapper.style.backgroundRepeat="no-repeat";
-      //     }
-      // } else if(this.state.weather === "Snow") {
-      //     let wrapper = document.getElementById("wrapper");
-      //     if(wrapper)
-      //     {
-      //       wrapper.style.backgroundImage='url(' + require('./gif/snow-weather.gif') + ')';
-      //       wrapper.style.backgroundSize="cover";
-      //       wrapper.style.backgroundRepeat="no-repeat";
-      //     }
-      // } else if(this.state.weather === "Clear") {
-      //     let wrapper = document.getElementById("wrapper");
-      //     if(wrapper)
-      //     {
-      //       wrapper.style.backgroundImage='url(' + require('./gif/clear-weather.gif') + ')';
-      //       wrapper.style.backgroundSize="cover";
-      //       wrapper.style.backgroundRepeat="no-repeat";
-      //     }
-      // }
 
       let wrapper = document.getElementById("wrapper");
       switch(this.state.weather){
@@ -168,23 +121,25 @@ class App extends React.Component {
 
     return(
 
-      <div className="wrapper" id="wrapper">
-        <div className="container">
-          <div className="main">
-            <div className="row">
-              <div className="col-sm-5 info">
-                <Info />
-              </div>
-              <div className="col-sm-7 form">
-                <Form weatherMethod={this.gettingWeather} />
-                <Weather 
-                  temp={Math.round(this.state.temp)}
-                  city={this.state.city}
-                  country={this.state.country}
-                  weather={this.state.weather}
-                  icon={this.state.icon}
-                  error={this.state.error}
-                />
+      <div>
+        <div className="wrapper" id="wrapper">
+          <div className="container">
+            <div className="main">
+              <div className="row">
+                <div className="col-sm-5 info">
+                  <Info />
+                </div>
+                <div className="col-sm-7 form">
+                  <Form weatherMethod={this.gettingWeather} />
+                  <Weather 
+                    temp={Math.round(this.state.temp)}
+                    city={this.state.city}
+                    country={this.state.country}
+                    weather={this.state.weather}
+                    icon={this.state.icon}
+                    // error={this.state.error}
+                  />
+                </div>
               </div>
             </div>
           </div>
