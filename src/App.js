@@ -1,15 +1,14 @@
 import React from "react";
-import ReactSnackBar from "react-js-snackbar";
-import Snackbar from "@material-ui/core/Snackbar";
-import { makeStyles } from '@material-ui/core/styles';
 import Info from "./components/info";
 import Form from "./components/form";
 import Weather from "./components/Weather";
 
+import {Snackbar} from '@material/react-snackbar';
+
 const API_KEY = "7e55941a255e043f703f40e894f63c21";
 
 class App extends React.Component {
-
+  
   state = {
 
     temp: undefined,
@@ -17,7 +16,7 @@ class App extends React.Component {
     country: undefined,
     weather: undefined,
     icon: undefined,
-    error: undefined,
+    error: false,
 
   }
 
@@ -38,7 +37,7 @@ class App extends React.Component {
           country: '',
           weather: '',
           icon: '',
-          error: 'Enter correct name of the city...'
+          error: true
         });
         return;
       }
@@ -98,7 +97,6 @@ class App extends React.Component {
             wrapper.style.backgroundRepeat="no-repeat";
           }
           break;
-
       }
 
     }
@@ -110,9 +108,12 @@ class App extends React.Component {
         country: undefined,
         weather: undefined,
         icon: undefined,
-        error: "Enter the name of the city..."
+        error: true
       });
 
+      setTimeout(() => {
+        this.setState({error: false});
+      }, 4000);
     }
 
   }
@@ -139,6 +140,12 @@ class App extends React.Component {
                     icon={this.state.icon}
                     // error={this.state.error}
                   />
+                  <div>
+                    <Snackbar 
+                      message="City Not Found!"
+                      open={this.state.error}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

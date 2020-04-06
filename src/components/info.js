@@ -1,5 +1,6 @@
 import React from "react";
 import App from "../App";
+import {Snackbar} from '@material/react-snackbar';
 
 const Info = () => (
 
