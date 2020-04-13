@@ -1,161 +1,115 @@
-import React from "react";
-import Info from "./components/info";
-import Form from "./components/form";
-import Weather from "./components/Weather";
+import React, {useEffect, useState} from 'react';
+import Weather from './Components/Weather';
+import Info from './Components/Info';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+import './App.css';
 
-import {Snackbar} from '@material/react-snackbar';
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
-const API_KEY = "7e55941a255e043f703f40e894f63c21";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
-class App extends React.Component {
+const App = () => {
+  const API_KEY = "7e55941a255e043f703f40e894f63c21";
   
-  state = {
+  const [cityname, setCityname] = useState('');
+  const [country, setCountry] = useState([]);
+  const [temp, setTemp] = useState([]);
+  const [weather, setWeather] = useState([]);
+  const [icon, setIcon] = useState([]);
+  const [search, setSearch] = useState('');
+  const classes = useStyles();
+  const [error, setError] = useState(false);
 
-    temp: undefined,
-    city: undefined,
-    country: undefined,
-    weather: undefined,
-    icon: undefined,
-    error: false,
+  useEffect( () => {
+    getWeather();
+  }, [cityname]);
 
-  }
-
-  gettingWeather = async (e) => {
-
-    e.preventDefault();
-    var city = e.target.elements.city.value;
-
-    if(city){
-      const api_url = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
-      const data = await api_url.json();
-      // console.log(data);
+  const getWeather = async () => {
+    const responce = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${API_KEY}&units=metric`);
+    const data = await responce.json();
+    // console.log(data);
+    
+    if(cityname){
 
       if(data.cod === "404")  {
-        this.setState({
-          temp: '',
-          city: '',
-          country: '',
-          weather: '',
-          icon: '',
-          error: true
-        });
+        setCityname('');
+        setCountry('');
+        setTemp('');
+        setWeather('');
+        setIcon('');
+        setError(true);
         return;
       }
 
+      setCityname(data.name);
+      setCountry(data.sys.country);
+      setTemp(Math.round(data.main.temp));
+      setWeather(data.weather["0"].main);
+      setIcon(data.weather["0"].icon);
 
-      this.setState({
-        temp: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        weather: data.weather["0"].main,
-        icon: data.weather["0"].icon,
-        error: undefined
-      });
-
-      let wrapper = document.getElementById("wrapper");
-      switch(this.state.weather){
-
-        case "Clouds":
-          if(wrapper){
-            wrapper.style.backgroundImage='url(' + require('./gif/cloudy-weather.gif') + ')';
-            wrapper.style.backgroundSize="cover";
-            wrapper.style.backgroundRepeat="no-repeat";
-          }
-          break;
-        case "Rain":
-          if(wrapper){
-            wrapper.style.backgroundImage='url(' + require('./gif/rainy-weather.gif') + ')';
-            wrapper.style.backgroundSize="cover";
-            wrapper.style.backgroundRepeat="no-repeat";
-          }
-          break;
-        case "Thunderstorm":
-          if(wrapper){
-            wrapper.style.backgroundImage='url(' + require('./gif/thunderstorm-weather.gif') + ')';
-            wrapper.style.backgroundSize="cover";
-            wrapper.style.backgroundRepeat="no-repeat";
-          }
-          break;
-        case "Drizzle":
-          if(wrapper){
-            wrapper.style.backgroundImage='url(' + require('./gif/drizzle-weather.gif') + ')';
-            wrapper.style.backgroundSize="cover";
-            wrapper.style.backgroundRepeat="no-repeat";
-          }
-          break;
-        case "Snow":
-          if(wrapper){
-            wrapper.style.backgroundImage='url(' + require('./gif/snow-weather.gif') + ')';
-            wrapper.style.backgroundSize="cover";
-            wrapper.style.backgroundRepeat="no-repeat";
-          }
-          break;
-        case "Clear":
-          if(wrapper){
-            wrapper.style.backgroundImage='url(' + require('./gif/clear-weather.gif') + ')';
-            wrapper.style.backgroundSize="cover";
-            wrapper.style.backgroundRepeat="no-repeat";
-          }
-          break;
-      }
-
+    } else {
+      setCityname(undefined);
+      setCountry(undefined);
+      setTemp(undefined);
+      setWeather(undefined);
+      setIcon(undefined);
     }
-    else {
-
-      this.setState({
-        temp: undefined,
-        city: undefined,
-        country: undefined,
-        weather: undefined,
-        icon: undefined,
-        error: true
-      });
-
-      setTimeout(() => {
-        this.setState({error: false});
-      }, 4000);
-    }
-
   }
 
-  render(){
+  const updateSearch = e => {
+    setSearch(e.target.value);
+  }
 
-    return(
+  const getSearch = e => {
+    e.preventDefault();
+    setCityname(search);
+  }
 
-      <div>
-        <div className="wrapper" id="wrapper">
-          <div className="container">
-            <div className="main">
-              <div className="row">
-                <div className="col-sm-5 info">
-                  <Info />
-                </div>
-                <div className="col-sm-7 form">
-                  <Form weatherMethod={this.gettingWeather} />
-                  <Weather 
-                    temp={Math.round(this.state.temp)}
-                    city={this.state.city}
-                    country={this.state.country}
-                    weather={this.state.weather}
-                    icon={this.state.icon}
-                    // error={this.state.error}
-                  />
-                  <div>
-                    <Snackbar 
-                      message="City Not Found!"
-                      open={this.state.error}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setError(false);
+  };
+
+  return (
+
+    <div className="App">
+      <div className="Main">
+        <div className="image"><Info /></div>
+        <form action="" onSubmit={getSearch} className="getweather-form">
+          <input type="text" className="getweather-input" placeholder="City" value={search} onChange={updateSearch}/>
+          <button type="submit" className="getweather-btn">Get Weather</button>
+        </form>
+        <Weather 
+          city={cityname}
+          country={country}
+          temp={temp}
+          weather={weather}
+          icon={icon}
+        />
       </div>
+      <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          City Not Found!
+        </Alert>
+      </Snackbar>
+    </div>
 
-    );
-
-  }
+  );
 
 }
 

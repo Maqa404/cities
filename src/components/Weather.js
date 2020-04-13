@@ -1,19 +1,21 @@
-import React from "react";
-import App from "../App";
+import React from 'react';
 
-const Weather = props => (
+const Weather = props => {
 
-    <div className="infoWeath">
-        {props.city &&
-            <div style={{width: "324px", height: "238px", position: "absolute", left: "15px", marginTop: "-25px", marginTop: "10px"}}>
-                <p style={{textAlign: "center"}}><img src={`http://openweathermap.org/img/w/${props.icon}.png`}/>{props.city}, {props.country}</p>
-                <p style={{marginLeft: "85px"}}>Temperature: {props.temp}°C</p>
-                <p style={{marginLeft: "85px"}}>Weather: {props.weather}</p>
-            </div> 
-        }
-        <p className="error">{props.error}</p>
-    </div>
+        return(
 
-)
+            <div>
+                {props.city &&
+                    <div style={{marginLeft: "50%", color: "white", textAlign: "center"}}>
+                        <h2 style={{marginTop: "0px", marginBottom: "6%"}}><img src={`http://openweathermap.org/img/w/${props.icon}.png`}/><div style={{marginTop: "auto"}}>{props.city}, {props.country}</div></h2>
+                        <div>Temperature: {props.temp}°C</div>
+                        <div>Weather: {props.weather}</div>
+                    </div>
+                }
+            </div>
+
+        );
+
+};
 
 export default Weather;

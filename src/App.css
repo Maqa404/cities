@@ -1,165 +1,88 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import '../node_modules/@material/react-snackbar/dist/snackbar.css';
 
-body {
+.App {
+    background-image: linear-gradient(to top, #fcc5e4 0%, #fda34b 15%, #ff7882 35%, #c8699e 52%, #7046aa 71%, #0c1db8 87%, #020f75 100%);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
     font-family: "Open Sans", serif;
+    /* display: flex; */
 }
 
-.wrapper {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.Main {
+    background-image: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
+    box-shadow: 16px 16px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
 
-  background: rgba(45,176,224,1);
-  background: -moz-linear-gradient(45deg, rgba(45,176,224,1) 0%, rgba(96,40,168,1) 100%);
-  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(45,176,224,1)), color-stop(100%, rgba(96,40,168,1)));
-  background: -webkit-linear-gradient(45deg, rgba(45,176,224,1) 0%, rgba(96,40,168,1) 100%);
-  background: -o-linear-gradient(45deg, rgba(45,176,224,1) 0%, rgba(96,40,168,1) 100%);
-  background: -ms-linear-gradient(45deg, rgba(45,176,224,1) 0%, rgba(96,40,168,1) 100%);
-  background: linear-gradient(45deg, rgba(45,176,224,1) 0%, rgba(96,40,168,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2db0e0', endColorstr='#6028a8', GradientType=1 );
-}
-
-.main {
-  height: 55vh;
-  background: #2a6bb1;
-  box-shadow: 0px 2px 80px -20px rgba(0,0,0,0.5);
-  width: 60%;
-  margin: 0 auto;
-}
-
-.info {
-  height: 55vh;
-  background: url("img/polygon.jpg") center center no-repeat;
-  background-blend-mode: multiply;
-  border: 2px solid #1f1f1f;
-  border-right: 2px solid #131e29;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #000;
-}
-  
-.form {
-  height: 55vh;
-  padding-top: 45px;
-  padding-left: 50px;
-  border-top: 2px solid #113a65;
-  border-bottom: 2px solid #113a65;
-  border-right: 2px solid #113a65;
-  right: 15px;
-}
-  
-input[type="text"] {
-  background-color: transparent;
-  border: 0;
-  border-bottom: solid 2px #113a65;
-  width: 50%;
-  padding-bottom: 4px;
-  color: #fff;
-  font-weight: lighter;
-  margin-bottom: 30px;
-  margin-right: 20px;
-  font-size: 20px;
-  outline: none;
-}
-  
-input::-webkit-input-placeholder {
-  color: #103a65;
-}
- 
-input::-moz-placeholder {
-  color: #103a65;
-}
-  
-.getweather {
-  border: 2px solid #103a65;
-  border-bottom: 4px solid #103a65;
-  padding: 8px 20px;
-  margin: 0 2px;
-  border-radius: 2px;
-  cursor: pointer;
-  background-color: #235d9c;
-  color: #fff;
-  outline: none!important;
-}
-  
-.getweather:hover {
-  border-bottom: 2px solid #103a65;
-  position: relative;
-  top: 2px;
-}
-  
-.getweather:active {
-  border-bottom: 2px solid transparent;
-  border-color: transparent;
-  position: relative;
-  top: 2px;
-}
-  
-.info h2 {
-  font-size: 3em;
-  color: #fff;
-}
-  
-.info p {
-  color: #e4e4e4;
-  font-weight: bold;
-}
-  
-.infoWeath {
-  width: 60%;
-  font-size: 20px;
-  color: #fff;
-}
-  
-.error {
-  color: #041f3c;
-  font-weight: bold;
-}
-
-.infoapp {
-  margin-top: 20px;
-  color: #fff;
-}
-
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  .col-sm-5.info {
-    height: 200px;
+    height: 50%;
+    width: 50%;
     position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-  }
-  .col-sm-7.form {
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.image {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
-    top: 200px;
-    margin-top: 0px;
-    border: 0px;
-    padding-right: 0px;
-  }
-  .main {
-    width: 0px;
-    height: 0px;
-  }
-  .form {
-    padding-left: 20px;
-  }
-  .infoWeath {
-    width: 100%;
-    margin-left: 50%;
-    margin-right: 50%;
-  }
-  .error {
-    width: 295px;
-    position: absolute;
-    left: 50px;
-    margin-bottom: 0px;
-  }
+    width: 50%;
+    height: 100%;
+
+    background: url(./img/polygon.jpg) center center no-repeat;
+    box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px 0px 0px 50px;
+    background-blend-mode: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
+    opacity: 0.5;
+}
+
+.getweather-form {
+    margin-left: 55%;
+    margin-top: 5%;
+}
+
+.getweather-input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: solid 2px #0083AC;
+    width: 50%;
+    padding-bottom: 4px;
+    color: #fff;
+    font-weight: lighter;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    font-size: 20px;
+    outline: none;
+}
+
+.getweather-input::-webkit-input-placeholder {
+    color: #0083AC;
+}
+   
+.getweather.input::-moz-placeholder {
+    color: #0083AC;
+}
+
+.getweather-btn {
+    border: 2px solid #0083AC;
+    border-bottom: 4px solid #0083AC;
+    padding: 8px 20px;
+    margin: 0 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #f3a469;
+    color: #fff;
+    outline: none!important;
+}
+
+.getweather-btn:hover {
+    border-bottom: 2px solid #0083AC;
+    position: relative;
+    top: 2px;
+}
+    
+.getweather-btn:active {
+    border-bottom: 2px solid transparent;
+    border-color: transparent;
+    position: relative;
+    top: 2px;
 }

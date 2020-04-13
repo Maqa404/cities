@@ -1,15 +1,16 @@
-import React from "react";
-import App from "../App";
-import {Snackbar} from '@material/react-snackbar';
+import React from 'react';
 
-const Info = () => (
+const Info = () => {
 
-    <div className="infoapp">
-        <h3>Weather App</h3>
-        <div>Find out the weather in your city</div>
-        <br/>
-    </div>
+    return(
 
-)
+        <div style={{color: "white", textAlign: "center", marginTop: "37%"}}>
+            <h1>Weather App</h1>
+            <p style={{fontWeight: "bold"}}>Find out the weather in your city</p>
+        </div>
+
+    );
+
+}
 
 export default Info;
