@@ -87,20 +87,26 @@ const App = () => {
 
   return (
 
-    <div className="App">
-      <div className="Main">
-        <div className="image"><Info /></div>
+    <div className="App pt-5">
+      <div className="Main col-6 m-auto d-flex">
+        <img src={require('./img/polygon2.jpg')} alt="Weather App Image" className="img col-6"/>
+        <form action="" className="col-6 pt-3">
+          <input type="text" placeholder="City" />
+          <button className="btn-primary">Get Weather</button>
+        </form>
+        {/* <div className="image"><Info /></div>
         <form action="" onSubmit={getSearch} className="getweather-form">
           <input type="text" className="getweather-input" placeholder="City" value={search} onChange={updateSearch}/>
           <button type="submit" className="getweather-btn">Get Weather</button>
         </form>
+        <div className="text-center">Text-center</div>
         <Weather 
           city={cityname}
           country={country}
           temp={temp}
           weather={weather}
           icon={icon}
-        />
+        /> */}
       </div>
       <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
