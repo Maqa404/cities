@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 
 const Weather = props => {
@@ -7,15 +8,16 @@ const Weather = props => {
             <div>
                 {props.city &&
                     <div style={{marginLeft: "50%", color: "white", textAlign: "center"}}>
-                        <h2 style={{marginTop: "0px", marginBottom: "6%"}}><img src={`http://openweathermap.org/img/w/${props.icon}.png`}/><div style={{marginTop: "auto"}}>{props.city}, {props.country}</div></h2>
-                        <div>Temperature: {props.temp}°C</div>
-                        <div>Weather: {props.weather}</div>
+                        <img src={`http://openweathermap.org/img/w/${props.icon}.png`}/>
+                        <h4 className="text-dark" style={{marginTop: "auto"}}>{props.city}, {props.country}</h4>
+                        <h5 className="text-secondary">Temperature: {props.temp}°C</h5>
+                        <h5 className="text-secondary">Weather: {props.weather}</h5>
                     </div>
                 }
             </div>
 
         );
 
-};
+};  
 
 export default Weather;
